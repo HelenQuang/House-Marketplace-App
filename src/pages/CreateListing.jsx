@@ -14,8 +14,9 @@ import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 
 function CreateListing() {
-  const [geolocationEnabled, setGeolocationEnabled] = useState(true);
   const [loading, setLoading] = useState(false);
+  // eslint-disable-next-line
+  const [geolocationEnabled, setGeolocationEnabled] = useState(true);
   const [formData, setFormData] = useState({
     type: "rent",
     name: "",
@@ -94,10 +95,11 @@ function CreateListing() {
 
     if (geolocationEnabled) {
       const response = await fetch(
-        `https://api.positionstack.com/v1/forward?access_key=${process.env.REACT_APP_POSITIONSTACK_API_KEY}&query=${address}`
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`
       );
 
       const data = await response.json();
+      console.log(data);
 
       geolocation.lat = data.results[0]?.geometry.location.lat ?? 0;
       geolocation.lng = data.results[0]?.geometry.location.lng ?? 0;
@@ -117,7 +119,7 @@ function CreateListing() {
       geolocation.lng = longitude;
     }
 
-    // Store image in firebase
+    // Upload images to Firebase
     const storeImage = async (image) => {
       return new Promise((resolve, reject) => {
         const storage = getStorage();
@@ -176,7 +178,7 @@ function CreateListing() {
     formDataCopy.location = address;
     delete formDataCopy.images;
     delete formDataCopy.address;
-    !formDataCopy.offer && delete formDataCopy.discountedPrice;
+    !formDataCopy.offer && delete formDataCopy.discountPrice;
 
     const docRef = await addDoc(collection(db, "listings"), formDataCopy);
     setLoading(false);
@@ -194,7 +196,7 @@ function CreateListing() {
       boolean = false;
     }
 
-    // Files
+    // for Files
     if (e.target.files) {
       setFormData((prevState) => ({
         ...prevState,
@@ -202,7 +204,7 @@ function CreateListing() {
       }));
     }
 
-    // Text/Booleans/Numbers
+    // for Text/Booleans/Numbers
     if (!e.target.files) {
       setFormData((prevState) => ({
         ...prevState,
@@ -426,7 +428,7 @@ function CreateListing() {
               <input
                 className="formInputSmall"
                 type="number"
-                id="discountedPrice"
+                id="discountPrice"
                 value={discountPrice}
                 onChange={onMutate}
                 min="50"

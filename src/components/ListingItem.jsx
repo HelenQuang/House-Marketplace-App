@@ -12,7 +12,7 @@ function ListingItem({ listing, id, onEdit, onDelete }) {
         className="categoryListingLink"
       >
         <img
-          src={listing.imageUrls[0]}
+          src={listing.imgUrls[0]}
           alt={listing.name}
           className="categoryListingImg"
         />
@@ -23,7 +23,7 @@ function ListingItem({ listing, id, onEdit, onDelete }) {
           <p className="categoryListingName">{listing.name}</p>
 
           <p className="categoryListingPrice">
-            $
+            €
             {listing.offer
               ? listing.discountPrice
                   .toString()
