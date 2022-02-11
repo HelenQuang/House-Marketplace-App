@@ -20,6 +20,8 @@ function Category() {
 
   const params = useParams();
 
+  console.log(listings);
+
   useEffect(() => {
     const fetchListings = async () => {
       try {
@@ -72,13 +74,14 @@ function Category() {
         <>
           <main>
             <ul className="categoryListings">
-              {listings.map((listing) => (
-                <ListingItem
-                  listing={listing.data}
-                  id={listing.id}
-                  key={listing.key}
-                />
-              ))}
+              {listings &&
+                listings.map((listing) => (
+                  <ListingItem
+                    listing={listing.data}
+                    id={listing.id}
+                    key={listing.key}
+                  />
+                ))}
             </ul>
           </main>
         </>

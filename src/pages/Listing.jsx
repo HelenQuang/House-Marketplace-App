@@ -1,16 +1,15 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-// import { Helmet } from "react-helmet";
-// import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-// import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import "swiper/swiper-bundle.css";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { getDoc, doc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { db } from "../firebase.config";
 import Spinner from "../components/Spinner";
 import shareIcon from "../assets/svg/shareIcon.svg";
-//SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 function Listing() {
   const [listing, setListing] = useState(null);
@@ -27,7 +26,6 @@ function Listing() {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        console.log(docSnap.data());
         setListing(docSnap.data());
         setLoading(false);
       }
@@ -42,10 +40,7 @@ function Listing() {
 
   return (
     <main>
-      {/* <Helmet>
-        <title>{listing.name}</title>
-      </Helmet>
-      <Swiper slidesPerView={1} pagination={{ clickable: true }}>
+      <Swiper slidesPerView={2} pagination={{ clickable: true }}>
         {listing.imgUrls.map((url, index) => (
           <SwiperSlide key={index}>
             <div
@@ -57,7 +52,7 @@ function Listing() {
             ></div>
           </SwiperSlide>
         ))}
-      </Swiper> */}
+      </Swiper>
 
       <div
         className="shareIconDiv"
@@ -115,7 +110,7 @@ function Listing() {
 
         <p className="listingLocationTitle">Location</p>
 
-        {/* <div className="leafletContainer">
+        <div className="leafletContainer">
           <MapContainer
             style={{ height: "100%", width: "100%" }}
             center={[listing.geolocation.lat, listing.geolocation.lng]}
@@ -133,7 +128,7 @@ function Listing() {
               <Popup>{listing.location}</Popup>
             </Marker>
           </MapContainer>
-        </div> */}
+        </div>
 
         {auth.currentUser?.uid !== listing.userRef && (
           <Link

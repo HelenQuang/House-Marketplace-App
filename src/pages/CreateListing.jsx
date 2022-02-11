@@ -255,8 +255,8 @@ function CreateListing() {
             id="name"
             value={name}
             onChange={onMutate}
-            maxLength="32"
-            minLength="10"
+            maxLength="50"
+            minLength="5"
             required
           />
 
@@ -419,7 +419,7 @@ function CreateListing() {
               max="750000000"
               required
             />
-            {type === "rent" && <p className="formPriceText">$ / Month</p>}
+            {type === "rent" && <p className="formPriceText">€ / Month</p>}
           </div>
 
           {offer && (
