@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { useParams } from "react-router-dom";
 import {
   collection,
   getDocs,
@@ -7,7 +7,7 @@ import {
   where,
   orderBy,
   limit,
-  // startAfter,
+  startAfter,
 } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
@@ -17,6 +17,9 @@ import ListingItem from "../components/ListingItem";
 function Offers() {
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [lastFetchedListing, setLastFetchedListing] = useState(false);
+
+  const params = useParams();
 
   useEffect(() => {
     const fetchListings = async () => {
@@ -29,11 +32,13 @@ function Offers() {
           listingRef,
           where("offer", "==", true),
           orderBy("timestamp", "desc"),
-          limit(10)
+          limit(3)
         );
 
         //Execute query
         const querySnap = await getDocs(q);
+        const lastVisible = querySnap.docs[querySnap.docs.length - 1];
+        setLastFetchedListing(lastVisible);
 
         let listings = [];
 
@@ -53,6 +58,42 @@ function Offers() {
 
     fetchListings();
   }, []);
+
+  //Load more Pagination
+  const onFetchMoreListings = async () => {
+    try {
+      //Get reference
+      const listingRef = collection(db, "listings");
+
+      //Create a query
+      const q = query(
+        listingRef,
+        where("offer", "==", true),
+        orderBy("timestamp", "desc"),
+        startAfter(lastFetchedListing),
+        limit(10)
+      );
+
+      //Execute query
+      const querySnap = await getDocs(q);
+      const lastVisible = querySnap.docs[querySnap.docs.length - 1];
+      setLastFetchedListing(lastVisible);
+
+      let listings = [];
+
+      querySnap.forEach((doc) => {
+        return listings.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+
+      setListings((prevState) => [...prevState, ...listings]);
+      setLoading(false);
+    } catch (error) {
+      toast.error("Could not fetch listings");
+    }
+  };
 
   return (
     <div className="category">
@@ -75,6 +116,12 @@ function Offers() {
               ))}
             </ul>
           </main>
+
+          {lastFetchedListing && (
+            <p className="loadMore" onClick={onFetchMoreListings}>
+              Load more results
+            </p>
+          )}
         </>
       ) : (
         <p> There are no current offers </p>
