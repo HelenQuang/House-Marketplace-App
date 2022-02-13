@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap");
 * {
   box-sizing: border-box;
 }
@@ -8,7 +8,7 @@ html::-webkit-scrollbar {
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   background-color: #f2f4f8;
   margin: 0;
   box-sizing: border-box;
@@ -37,7 +37,7 @@ button {
   height: 3rem;
   width: 100%;
   outline: none;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   padding: 0 3rem;
   font-size: 1rem;
 }
@@ -66,7 +66,7 @@ button {
   font-weight: 600;
   font-size: 1.25rem;
   width: 80%;
-  margin: 0 auto;
+  margin: 5rem 5rem 7rem 12rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -187,12 +187,12 @@ button {
 
 .nameInput {
   margin-bottom: 2rem;
-  background: url('./assets/svg/badgeIcon.svg') #ffffff 2.5% center no-repeat;
+  background: url("./assets/svg/badgeIcon.svg") #ffffff 2.5% center no-repeat;
 }
 
 .emailInput {
   margin-bottom: 2rem;
-  background: url('./assets/svg/personIcon.svg') #ffffff 2.5% center no-repeat;
+  background: url("./assets/svg/personIcon.svg") #ffffff 2.5% center no-repeat;
 }
 
 .passwordInputDiv {
@@ -201,7 +201,7 @@ button {
 
 .passwordInput {
   margin-bottom: 2rem;
-  background: url('./assets/svg/lockIcon.svg') #ffffff 2.5% center no-repeat;
+  background: url("./assets/svg/lockIcon.svg") #ffffff 2.5% center no-repeat;
 }
 
 .showPassword {
@@ -311,10 +311,12 @@ button {
 .exploreHeading,
 .exploreCategoryHeading {
   font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 3rem;
 }
 
 .exploreCategoryHeading {
-  margin-top: 3rem;
+  margin-top: 5rem;
 }
 
 .swiper-container {
@@ -389,8 +391,9 @@ button {
 }
 
 .exploreCategoryName {
-  font-weight: 500;
-  text-align: left;
+  font-weight: 600;
+  font-size: 1.25rem;
+  text-align: center;
 }
 
 .category {
@@ -471,10 +474,10 @@ button {
 
 .loadMore {
   cursor: pointer;
-  width: 8rem;
+  width: 12rem;
   margin: 0 auto;
   text-align: center;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 0.5rem;
   background-color: #000000;
   color: #ffffff;
   font-weight: 600;
@@ -484,16 +487,17 @@ button {
 }
 
 .listingDetails {
-  margin-bottom: 10rem;
+  margin-bottom: 2rem;
 }
 
 .shareIconDiv {
   cursor: pointer;
   position: fixed;
+
   top: 3%;
   right: 5%;
   z-index: 2;
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 50%;
   width: 3rem;
   height: 3rem;
@@ -503,9 +507,9 @@ button {
 }
 
 .listingName {
-  font-weight: 600;
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+  font-weight: 700;
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
 }
 
 .listingLocation {
@@ -538,10 +542,12 @@ button {
   padding: 0;
   list-style-type: none;
 }
+
 .listingDetailsList li {
   margin: 0.3rem 0;
   font-weight: 500;
   opacity: 0.8;
+  font-size: 1rem;
 }
 
 .listingLocationTitle {
@@ -622,8 +628,8 @@ button {
 
 .logOut {
   cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.25rem;
   font-weight: 600;
   color: #ffffff;
   background-color: #00cc66;
@@ -637,14 +643,16 @@ button {
   max-width: 500px;
 }
 
-.personalDetailsText {
-  font-weight: 600;
+.profileDetailText {
+  font-weight: 700;
+  font-size: 1.25rem;
 }
 
 .changePersonalDetails {
   cursor: pointer;
   font-weight: 600;
   color: #00cc66;
+  font-size: 1.25rem;
 }
 
 .profileCard {
@@ -696,15 +704,21 @@ button {
   box-shadow: rgba(0, 0, 0, 0.2);
   margin-top: 2rem;
   font-weight: 600;
+  font-size: 1.25rem;
   max-width: 500px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.createListing:hover {
+  background-color: #00cc66;
+}
+
 .listingText {
   margin-top: 3rem;
   font-weight: 600;
+  font-size: 1.25rem;
 }
 
 .lisitingsList {
@@ -754,7 +768,7 @@ button {
 .formInputFile {
   border: none;
   outline: none;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 .formInputSmall,
 .formInputFile {

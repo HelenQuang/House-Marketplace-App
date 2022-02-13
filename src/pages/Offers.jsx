@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import {
   collection,
   getDocs,
@@ -19,8 +18,6 @@ function Offers() {
   const [loading, setLoading] = useState(true);
   const [lastFetchedListing, setLastFetchedListing] = useState(false);
 
-  const params = useParams();
-
   useEffect(() => {
     const fetchListings = async () => {
       try {
@@ -32,7 +29,7 @@ function Offers() {
           listingRef,
           where("offer", "==", true),
           orderBy("timestamp", "desc"),
-          limit(3)
+          limit(5)
         );
 
         //Execute query

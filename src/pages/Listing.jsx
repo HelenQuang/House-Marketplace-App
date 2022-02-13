@@ -40,35 +40,6 @@ function Listing() {
 
   return (
     <main>
-      <Swiper slidesPerView={2} pagination={{ clickable: true }}>
-        {listing.imgUrls.map((url, index) => (
-          <SwiperSlide key={index}>
-            <div
-              style={{
-                background: `url(${listing.imgUrls[index]}) center no-repeat`,
-                backgroundSize: "cover",
-              }}
-              className="swiperSlideDiv"
-            ></div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-
-      <div
-        className="shareIconDiv"
-        onClick={() => {
-          navigator.clipboard.writeText(window.location.href);
-          setShareLinkCopied(true);
-          setTimeout(() => {
-            setShareLinkCopied(false);
-          }, 2000);
-        }}
-      >
-        <img src={shareIcon} alt="" />
-      </div>
-
-      {shareLinkCopied && <p className="linkCopied">Link Copied!</p>}
-
       <div className="listingDetails">
         <p className="listingName">
           {listing.name} - €
@@ -107,8 +78,46 @@ function Listing() {
           <li>{listing.parking && "Parking Spot"}</li>
           <li>{listing.furnished && "Furnished"}</li>
         </ul>
+      </div>
 
-        <p className="listingLocationTitle">Location</p>
+      <div
+        className="shareIconDiv"
+        onClick={() => {
+          navigator.clipboard.writeText(window.location.href);
+          setShareLinkCopied(true);
+          setTimeout(() => {
+            setShareLinkCopied(false);
+          }, 2000);
+        }}
+      >
+        <img src={shareIcon} alt="" />
+      </div>
+      {shareLinkCopied && <p className="linkCopied">Link Copied!</p>}
+
+      <div className="listingDetails">
+        <p className="listingName"> Property Overview </p>
+        <Swiper
+          slidesPerView={2}
+          pagination={{ clickable: true }}
+          spaceBetween={30}
+          centeredSlides={true}
+        >
+          {listing.imgUrls.map((url, index) => (
+            <SwiperSlide key={index}>
+              <div
+                style={{
+                  background: `url(${listing.imgUrls[index]}) center no-repeat`,
+                  backgroundSize: "cover",
+                }}
+                className="swiperSlideDiv"
+              ></div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+
+      <div className="listingDetails">
+        <p className="listingName">Location</p>
 
         <div className="leafletContainer">
           <MapContainer
