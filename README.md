@@ -12,7 +12,7 @@ https://house-marketplace-helen.netlify.app/
 
 
 
-### *2. Explore page: Show recommended house list, placesfor rent and places for sale*
+### *2. Explore page: Show recommended house list, places for rent and places for sale*
 
 ![1](https://user-images.githubusercontent.com/94285120/154532883-41877071-796e-4e16-95f3-8d20e214d45b.png)
 
@@ -28,7 +28,7 @@ https://house-marketplace-helen.netlify.app/
 
 
 
-### *4. Listing item page: Show specific features of the property: price, address, number of rooms, parking lot, pictures, maps (React Leaflet Map), coordinates (Geocoding API),  and contact of landlord via email => Data was hardcode in Firestore database or can be added by the user*
+### *4. Listing item page: Show specific features of the property: price, address, number of rooms, parking lot, pictures, maps (React Leaflet Map), coordinates (Geocoding API),  and contact of landlord via email => Data was hardcoded in Firestore database or can be added by the user*
 
 ![3 1](https://user-images.githubusercontent.com/94285120/154534825-323e0baa-afd2-4e31-b894-d5743dbd6440.png)
 
